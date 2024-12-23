@@ -8,25 +8,22 @@
 # - Mostre todas as datas de vencimento e o valor de cada parcela
 
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
-emprestimo = 1000
+emprestimo = 1_000_000
 data_inicio = datetime(2020, 12, 20)
-tempo_financiamento = (5, 0)
+tempo_financiamento = relativedelta(years=5)
+data_final = data_inicio + tempo_financiamento
 
 
-def valor_parcela(emprestimo, numero_parcelas):
-    return emprestimo / numero_parcelas
+data_parcelas = []
+data_parcela = data_inicio
 
-def cria_financiamento(*args, **kwargs):
-    def numero_parcela(years=0, mounths=0):
-        if isinstance(years, int) and isinstance(mounths, int) and mounths > 12:
-            raise TypeError('Param deve ser int')
-        print(years)
-        if years is not None:
-            years *= 12
-        return years + mounths
-    return numero_parcela
+while data_parcela < data_final:
+    data_parcelas.append(data_parcela)
+    data_parcela += relativedelta(months=+1)
 
-emprestimo_Maria = cria_financiamento(5, 0)
-
-print(emprestimo_Maria())
+fmt = '%d/%m/%Y'
+valor_parcelas = (emprestimo / len(data_parcelas))
+for data in data_parcelas:
+    print(datetime.strftime(data, fmt), round(valor_parcelas, ndigits=2))
