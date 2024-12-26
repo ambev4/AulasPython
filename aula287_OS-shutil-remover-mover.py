@@ -14,7 +14,7 @@ NOVA_PASTA = os.path.join(DESKTOP, 'NOVA_PASTA')
 shutil.rmtree(NOVA_PASTA, ignore_errors=True)
 shutil.copytree(PASTA_ORIGINAL, NOVA_PASTA) # Cópia recursiva
 # shutil.move(NOVA_PASTA, NOVA_PASTA + '_EITA')
-shutil.rmtree(NOVA_PASTA, ignore_errors=True) # Deleção recursiva
+shutil.rmtree(NOVA_PASTA, ignore_errors=True) # Deleção recursiva melhor metodo pra se fazer isso
 # os.makedirs(NOVA_PASTA, exist_ok=True)
 # for root, dirs, files in os.walk(PASTA_ORIGINAL):
 #     for dir_ in dirs:
